@@ -1,0 +1,13 @@
+.app-layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  column-gap: 30px;
+  min-height: 100vh;
+  min-height: calc(var(--vh, 1vh) * 100 - 120px);
+  max-width: 1320px;
+  width: 100%;
+  margin: auto;
+  background-color: #fff;
+  border-radius: 30px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
