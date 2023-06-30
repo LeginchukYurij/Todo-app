@@ -3,28 +3,45 @@ import Htag from '../../UI/Htag';
 import Text from '../../UI/Text';
 import Button from '../../UI/Button';
 import Badge from '../../UI/Bage';
+import { useParams } from 'react-router-dom';
+import { readItem } from '../../firebase/firebaseFunctions';
+import { useEffect, useState } from 'react';
 
 const Task = () => {
+  const { id } = useParams();
+  const [task, setTask] = useState(null);
+
+  const fetchTask = async () => {
+    const { data } = await readItem(id, 'tasks');
+    setTask(data);
+  };
+
+  useEffect(() => {
+    fetchTask();
+  }, [id]);
+
+  console.log(task);
+
+  // const { name, description, done, date, due_date, isChange } = task;
+
   return (
     <>
-      <article className={styles.article}>
-        <Htag level={1}>Task 1</Htag>
-        <Text>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex quas
-          perferendis dolore voluptatem aliquid asperiores hic magni impedit
-          sunt praesentium earum, veritatis quam eos accusantium cumque eligendi
-          odit tempora animi!
-        </Text>
+      {/* <article className={styles.article}>
+        <Htag level={1}>{name}</Htag>
+        <Text>{description}</Text>
 
         <div className={styles.info}>
+          date &&
+          {
+            <div className={styles['info__item']}>
+              Created: <Badge>{date}</Badge>
+            </div>
+          }
           <div className={styles['info__item']}>
-            Created: <Badge>June 30, 2023</Badge>
+            Last change: <Badge>{isChange}</Badge>
           </div>
           <div className={styles['info__item']}>
-            Last change: <Badge>June 30, 2023</Badge>
-          </div>
-          <div className={styles['info__item']}>
-            Due date: <Badge>June 30, 2023</Badge>
+            Due date: <Badge>{due_date}</Badge>
           </div>
         </div>
       </article>
@@ -40,7 +57,7 @@ const Task = () => {
           size='xl'>
           Edit
         </Button>
-      </div>
+      </div> */}
     </>
   );
 };

@@ -4,6 +4,9 @@ import Htag from '../../UI/Htag';
 import { getFormattedDate } from '../../utils';
 import Task from '../../components/Task';
 import List from '../../UI/List';
+import AllTasksContainer from '../../containers/AllTasksContainer';
+import OverdueTasksContainer from '../../containers/OverdueTasksContainer';
+import LastComplitedTasksContainer from '../../containers/LastComplitedTasksContainer';
 
 const Home = () => {
   const date = getFormattedDate(new Date());
@@ -11,53 +14,16 @@ const Home = () => {
   return (
     <>
       <Htag level={1}>
-        Today <Badge>{date}</Badge>
+        All tasks <Badge>{date}</Badge>
       </Htag>
 
       <AddButton href='/task/new'>Add New Task</AddButton>
 
-      <List>
-        <li>
-          <Task
-            date='June 30, 2023'
-            dueDate='June 30, 2023'>
-            Task 1
-          </Task>
-        </li>
-        <li>
-          <Task done={true}>Task 1</Task>
-        </li>
-        <li>
-          <Task>Task 1</Task>
-        </li>
-      </List>
+      <AllTasksContainer />
 
-      <List title='Overdue'>
-        <li>
-          <Task
-            date='June 30, 2023'
-            dueDate='June 30, 2023'>
-            Task 1
-          </Task>
-        </li>
-      </List>
+      <OverdueTasksContainer />
 
-      <List title='Last complited'>
-        <li>
-          <Task
-            done={true}
-            date='June 30, 2023'
-            dueDate='June 30, 2023'>
-            Task 1
-          </Task>
-        </li>
-        <li>
-          <Task done={true}>Task 1</Task>
-        </li>
-        <li>
-          <Task done={true}>Task 1</Task>
-        </li>
-      </List>
+      <LastComplitedTasksContainer />
     </>
   );
 };

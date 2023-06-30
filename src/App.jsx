@@ -7,7 +7,8 @@ import Add from './pages/Add';
 import Edit from './pages/Edit';
 import NoMatch from './pages/NoMatch';
 import { useEffect } from 'react';
-import Favourites from './pages/Favourites';
+import Complited from './pages/Complited';
+import { useGetAll } from './hooks/useGetAll';
 
 function App() {
   useEffect(() => {
@@ -19,6 +20,8 @@ function App() {
     window.addEventListener('resize', setHeight);
   }, []);
 
+  useGetAll();
+
   return (
     <Layout>
       <Routes>
@@ -28,8 +31,8 @@ function App() {
           element={<Home />}
         />
         <Route
-          path='/favourites'
-          element={<Favourites />}
+          path='/complited'
+          element={<Complited />}
         />
         <Route
           path='/task/:id'

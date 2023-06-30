@@ -7,14 +7,10 @@ const Sidebar = () => {
   const mainMenu = [
     {
       id: uniqid(),
-      name: 'Today',
+      name: 'All tasks',
       href: '/',
     },
-    {
-      id: uniqid(),
-      name: 'Favourites',
-      href: '/favourites',
-    },
+
     {
       id: uniqid(),
       name: 'Complited',
