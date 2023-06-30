@@ -1,0 +1,15 @@
+.search-module {
+  margin-bottom: 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.search-module input {
+  padding-right: 80px;
+}
+
+.search-module button {
+  position: absolute;
+  top: 0;
+  right: 0;
+}

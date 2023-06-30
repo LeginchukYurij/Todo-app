@@ -1,0 +1,12 @@
+.menu-col + .menu-col {
+  margin-top: 30px;
+}
+
+.menu-col__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  margin-top: 20px;
+  display: grid;
+  row-gap: 4px;
+}

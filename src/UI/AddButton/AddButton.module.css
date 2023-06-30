@@ -1,0 +1,17 @@
+.add-button {
+  border: var(--border);
+  height: 50px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+  color: var(--textGray);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.add-button:hover {
+  border-color: var(--text);
+  color: var(--text);
+}

@@ -1,9 +1,13 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import Home from './pages/Home';
 import Task from './pages/Task';
+import Search from './pages/Search';
+import Add from './pages/Add';
+import Edit from './pages/Edit';
 import NoMatch from './pages/NoMatch';
 import { useEffect } from 'react';
+import Favourites from './pages/Favourites';
 
 function App() {
   useEffect(() => {
@@ -17,23 +21,37 @@ function App() {
 
   return (
     <Layout>
-      <Router>
-        <Routes>
-          <Route
-            exact
-            path='/'
-            element={<Home />}
-          />
-          <Route
-            path='/tasks/:id'
-            element={<Task />}
-          />
-          <Route
-            path='*'
-            element={<NoMatch />}
-          />
-        </Routes>
-      </Router>
+      <Routes>
+        <Route
+          exact
+          path='/'
+          element={<Home />}
+        />
+        <Route
+          path='/favourites'
+          element={<Favourites />}
+        />
+        <Route
+          path='/task/:id'
+          element={<Task />}
+        />
+        <Route
+          path='/task/new'
+          element={<Add />}
+        />
+        <Route
+          path='/task/edit/:id'
+          element={<Edit />}
+        />
+        <Route
+          path='/search'
+          element={<Search />}
+        />
+        <Route
+          path='*'
+          element={<NoMatch />}
+        />
+      </Routes>
     </Layout>
   );
 }

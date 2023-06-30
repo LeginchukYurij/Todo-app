@@ -1,0 +1,24 @@
+.article {
+  display: grid;
+  row-gap: 30px;
+}
+
+.actions {
+  margin-top: auto;
+  display: flex;
+  gap: 20px;
+}
+
+.info {
+  display: grid;
+  row-gap: 25px;
+}
+
+.info__item {
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 15px;
+  align-items: center;
+}

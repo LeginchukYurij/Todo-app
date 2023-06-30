@@ -1,0 +1,12 @@
+.sidebar {
+  background-color: var(--bgDarken);
+  border-radius: 30px;
+  padding: 15px;
+}
+
+@media (max-width: 940px) {
+  .sidebar {
+    background: none;
+    padding: 0;
+  }
+}

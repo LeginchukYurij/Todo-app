@@ -1,0 +1,18 @@
+.list {
+  margin: 0;
+
+  list-style: none;
+  padding: 0;
+}
+
+.list li:first-child {
+  padding-bottom: 5px;
+}
+
+.list li:not(:first-child) {
+  padding: 5px 0;
+}
+
+.list li + li {
+  border-top: 1px solid var(--bgHover);
+}

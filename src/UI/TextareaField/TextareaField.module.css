@@ -1,0 +1,29 @@
+.form-group {
+  width: 100%;
+}
+
+.form-control {
+  min-height: 200px;
+  resize: vertical;
+  width: 100%;
+  display: block;
+  padding: 10px;
+  border: var(--border);
+  background: none;
+  border-radius: 10px;
+  color: var(--text);
+  font-weight: 600;
+  font-size: 1rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.form-control::placeholder {
+  color: var(--textGray);
+  font-weight: 600;
+  font-family: 'Roboto', sans-serif;
+}
+
+.form-control:focus {
+  border-color: var(--text);
+}

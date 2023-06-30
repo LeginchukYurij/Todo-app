@@ -1,0 +1,16 @@
+.badge {
+  padding: 5px;
+  border: var(--border);
+  display: inline-block;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 1rem;
+  line-height: 120%;
+  background-color: #fff;
+  width: fit-content;
+}
+
+.xs {
+  font-size: 0.8rem;
+  padding: 3px;
+}

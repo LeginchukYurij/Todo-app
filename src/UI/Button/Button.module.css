@@ -1,0 +1,48 @@
+.primery {
+  background-color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  height: 40px;
+  font-size: 1rem;
+  color: #fff;
+  font-weight: 600;
+  padding: 0 15px;
+  transition: background-color 0.2s ease;
+  border-radius: 5px;
+}
+
+.primery:hover {
+  background-color: var(--accentHover);
+}
+
+.xs {
+  height: 40px;
+  padding: 0 15px;
+  font-size: 1rem;
+}
+
+.xl {
+  height: 60px;
+  padding: 0 20px;
+  font-size: 1.2rem;
+}
+
+.fullW {
+  width: 100%;
+}
+
+.fullH {
+  height: 100%;
+}
+
+.gray {
+  background-color: var(--bgDarken);
+  color: var(--text);
+}
+
+.gray:hover {
+  background-color: var(--warning);
+  color: #fff;
+}
