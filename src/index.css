@@ -17,7 +17,7 @@
   --bgHover: #ebebeb;
   --dark: #dddddd;
   --border: 1px solid var(--dark);
-  --warning: red;
+  --warning: rgb(221, 70, 70);
 }
 
 html,

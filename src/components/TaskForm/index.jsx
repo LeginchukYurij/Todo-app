@@ -1,50 +1,80 @@
+import { PropTypes } from 'prop-types';
 import styles from './TaskForm.module.css';
-import { useState } from 'react';
+import { Timestamp } from 'firebase/firestore';
+import { useRef, useState } from 'react';
 import { useFormik } from 'formik';
-import { useNavigate } from 'react-router-dom';
+
 import InputField from '../../UI/InputField';
 import TextareaField from '../../UI/TextareaField';
 import Button from '../../UI/Button';
 import Datepicker from '../../UI/Datepicker';
 
 const TaskForm = ({
-  title,
+  name,
   description,
-  dueDate,
-  onAdd = null,
-  onReset = null,
-  onSave = null,
+  due_date,
+  done = false,
+  date = Timestamp.now(),
+  add = false,
+  reset = false,
+  save = false,
+  onSubmit,
+  isEdit = false,
 }) => {
-  const navigate = useNavigate();
+  const formRef = useRef(null);
 
-  const [startDate, setStartDate] = useState(new Date());
+  const [dueDate, setDueDate] = useState(
+    due_date ? new Date(due_date?.seconds * 1000) : new Date()
+  );
 
-  const goHome = () =>
-    navigate({
-      pathname: '/',
-    });
+  if (isEdit) {
+    done = !done;
+  }
 
   const formik = useFormik({
     initialValues: {
-      title: title || '',
+      name: name || '',
       description: description || '',
-      dueDate: dueDate || startDate,
+      due_date: dueDate,
     },
     onSubmit: (values) => {
-      console.log(values);
-      // goHome();
+      onSubmit({ ...values, date, done });
+    },
+    validate: (values) => {
+      let errors = {};
+      if (!values.name || values.name == '') {
+        errors.name = 'Required!';
+      }
+
+      if (!values.description || values.description == '') {
+        errors.description = 'Required!';
+      }
+
+      if (!values.due_date || values.due_date == '') {
+        errors.due_date = 'Required!';
+      }
+
+      return errors;
     },
   });
 
+  const onResetHandler = () => {
+    formik.values.name = '';
+    formik.values.description = '';
+    setDueDate(new Date());
+  };
+
   return (
     <form
+      ref={formRef}
       className={styles.form}
       onSubmit={formik.handleSubmit}>
       <InputField
-        id='title'
+        id='name'
         type='text'
-        name='title'
-        value={formik.values.title}
+        name='name'
+        value={formik.values.name}
+        isError={formik.errors.name}
         placeholder='Title'
         onChange={formik.handleChange}
       />
@@ -53,32 +83,34 @@ const TaskForm = ({
         id='description'
         name='description'
         value={formik.values.description}
+        isError={formik.errors.description}
         placeholder='Description'
         onChange={formik.handleChange}
       />
 
       <Datepicker
-        name='dueDate'
-        selected={startDate}
+        name='due_date'
+        label='Due date'
+        selected={dueDate}
+        isError={formik.errors.due_date}
         onChange={(date) => {
-          formik.values.dueDate = date;
-          setStartDate(date);
+          formik.values.due_date = date;
+          setDueDate(date);
         }}
       />
 
       <div className={styles.actions}>
-        {onAdd && (
+        {add && (
           <Button
-            onClick={onAdd}
             type='submit'
             size='xl'>
             Add new
           </Button>
         )}
 
-        {onReset && (
+        {reset && (
           <Button
-            onClick={onReset}
+            onClick={onResetHandler}
             skin='gray'
             type='button'
             size='xl'>
@@ -86,10 +118,9 @@ const TaskForm = ({
           </Button>
         )}
 
-        {onSave && (
+        {save && (
           <Button
-            onClick={onSave}
-            type='button'
+            type='submit'
             size='xl'>
             Save
           </Button>
@@ -97,6 +128,20 @@ const TaskForm = ({
       </div>
     </form>
   );
+};
+
+TaskForm.propTypes = {
+  name: PropTypes.string,
+  description: PropTypes.string,
+  date: PropTypes.object,
+  due_date: PropTypes.object,
+  done: PropTypes.bool,
+  children: PropTypes.node,
+  add: PropTypes.bool,
+  reset: PropTypes.bool,
+  save: PropTypes.bool,
+  isEdit: PropTypes.bool,
+  onSubmit: PropTypes.func,
 };
 
 export default TaskForm;

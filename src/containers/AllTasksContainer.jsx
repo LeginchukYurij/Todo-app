@@ -4,28 +4,31 @@ import Task from '../components/Task';
 
 const AllTasksContainer = () => {
   const tasks = useSelector((state) => state.tasks.tasks);
+  const filtered = tasks
+    .filter(
+      ({ done, due_date }) => !done && due_date.seconds * 1000 >= Date.now()
+    )
+    .sort((a, b) => (a.date.seconds < b.date.seconds ? 1 : -1));
 
   return (
     <List title='Active tasks'>
-      {tasks
-        .filter(
-          ({ done, date, due_date }) =>
-            !done && due_date.seconds * 1000 >= Date.now()
-        )
-        .sort((a, b) => (a.date.seconds < b.date.seconds ? 1 : -1))
-        .map(({ id, name, date, due_date, isChange }) => {
+      {tasks.length ? (
+        filtered.map(({ id, name, date, due_date, isChange }) => {
           return (
             <li key={id}>
               <Task
                 id={id}
                 date={date.seconds}
-                dueDate={due_date.seconds}
+                due_date={due_date.seconds}
                 isChange={isChange}>
                 {name}
               </Task>
             </li>
           );
-        })}
+        })
+      ) : (
+        <span>No active tasks</span>
+      )}
     </List>
   );
 };

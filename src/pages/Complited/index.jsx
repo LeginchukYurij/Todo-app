@@ -5,29 +5,33 @@ import Htag from '../../UI/Htag';
 
 const Complited = () => {
   const tasks = useSelector((state) => state.tasks.tasks);
+  const complited = tasks
+    .filter(({ done }) => done)
+    .sort((a, b) => (a.date.seconds < b.date.seconds ? 1 : -1));
 
   return (
     <>
       <Htag level={1}>Complited</Htag>
-      <List>
-        {tasks
-          .filter(({ done }) => done)
-          .sort((a, b) => (a.date.seconds < b.date.seconds ? 1 : -1))
-          .map(({ id, name, done, date, due_date, isChange }, index) => {
+      {complited.length ? (
+        <List>
+          {complited.map(({ id, name, done, date, due_date, isChange }) => {
             return (
               <li key={id}>
                 <Task
                   id={id}
                   done={done}
                   date={date.seconds}
-                  dueDate={due_date.seconds}
+                  due_date={due_date.seconds}
                   isChange={isChange}>
                   {name}
                 </Task>
               </li>
             );
           })}
-      </List>
+        </List>
+      ) : (
+        'No complited tasks'
+      )}
     </>
   );
 };

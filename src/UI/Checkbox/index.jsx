@@ -1,3 +1,4 @@
+import { PropTypes } from 'prop-types';
 import styles from './Checkbox.module.css';
 import { BsCheck } from 'react-icons/bs';
 
@@ -15,6 +16,11 @@ const Checkbox = ({ value, onChange }) => {
       </div>
     </div>
   );
+};
+
+Checkbox.propTypes = {
+  value: PropTypes.string,
+  onChange: PropTypes.func,
 };
 
 export default Checkbox;

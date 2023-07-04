@@ -6,3 +6,13 @@ export const getFormattedDate = (date) => {
   };
   return new Intl.DateTimeFormat('en-En', options).format(new Date(date));
 };
+
+export const fbTimestampToDate = (timestamp) => {
+  const options = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  };
+
+  return new Date(timestamp * 1000).toLocaleString('en-En', options);
+};

@@ -20,6 +20,14 @@ const Search = () => {
     onSubmit: (values) => {
       goToSearchPage(values.search);
     },
+    validate: (values) => {
+      let errors = {};
+      if (!values.search || values.search == '') {
+        errors.search = 'Required!';
+      }
+
+      return errors;
+    },
   });
 
   return (
@@ -32,6 +40,7 @@ const Search = () => {
           type='text'
           name='search'
           value={formik.values.search}
+          isError={formik.errors.search}
           placeholder='Search'
           onChange={formik.handleChange}
         />

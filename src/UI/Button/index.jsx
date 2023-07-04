@@ -1,3 +1,4 @@
+import { PropTypes } from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
 import styles from './Button.module.css';
@@ -29,6 +30,15 @@ const Button = ({ href, type, size, skin, children, onClick }) => {
       )}
     </>
   );
+};
+
+Button.propTypes = {
+  href: PropTypes.string,
+  type: PropTypes.string,
+  size: PropTypes.string,
+  skin: PropTypes.string,
+  children: PropTypes.node,
+  onClick: PropTypes.func,
 };
 
 export default Button;

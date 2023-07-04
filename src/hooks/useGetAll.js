@@ -21,7 +21,12 @@ export const useGetAll = () => {
     } catch (error) {
       console.log(error);
       dispath(setLoading(false));
-      dispath(setError({ bool: true }));
+      dispath(
+        setError({
+          bool: true,
+          message: 'Failed to load all the tasks. Reload the page',
+        })
+      );
     }
   };
 

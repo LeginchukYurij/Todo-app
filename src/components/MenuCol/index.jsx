@@ -1,3 +1,4 @@
+import { PropTypes } from 'prop-types';
 import Htag from '../../UI/Htag';
 import styles from './MenuCol.module.css';
 import MenuItem from './MenuItem';
@@ -22,6 +23,11 @@ const MenuCol = ({ title, obj }) => {
       )}
     </div>
   );
+};
+
+MenuCol.propTypes = {
+  title: PropTypes.string,
+  obj: PropTypes.array,
 };
 
 export default MenuCol;

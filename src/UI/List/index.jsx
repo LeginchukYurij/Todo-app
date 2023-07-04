@@ -1,3 +1,4 @@
+import { PropTypes } from 'prop-types';
 import Htag from '../Htag';
 import styles from './List.module.css';
 
@@ -8,6 +9,11 @@ const List = ({ title, children }) => {
       <ul className={styles.list}>{children}</ul>
     </>
   );
+};
+
+List.propTypes = {
+  title: PropTypes.string,
+  children: PropTypes.node,
 };
 
 export default List;

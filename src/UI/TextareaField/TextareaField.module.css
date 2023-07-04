@@ -3,6 +3,7 @@
 }
 
 .form-control {
+  font-family: 'Roboto', sans-serif;
   min-height: 200px;
   resize: vertical;
   width: 100%;
@@ -26,4 +27,8 @@
 
 .form-control:focus {
   border-color: var(--text);
+}
+
+.form-control__error {
+  border-color: var(--warning);
 }

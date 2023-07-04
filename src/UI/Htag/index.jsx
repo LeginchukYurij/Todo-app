@@ -1,5 +1,6 @@
+import { PropTypes } from 'prop-types';
+
 const Htag = ({ level, children }) => {
-  console.log(level);
   return (
     <>
       {level === 1 && <h1>{children}</h1>}
@@ -10,6 +11,11 @@ const Htag = ({ level, children }) => {
       {level === 6 && <h6>{children}</h6>}
     </>
   );
+};
+
+Htag.propTypes = {
+  level: PropTypes.number,
+  children: PropTypes.node,
 };
 
 export default Htag;

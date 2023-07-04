@@ -7,6 +7,7 @@ import {
   getDoc,
   deleteDoc,
   updateDoc,
+  Timestamp,
 } from 'firebase/firestore';
 
 export const getAllitems = async (collectionType) => {
@@ -16,17 +17,18 @@ export const getAllitems = async (collectionType) => {
   return tasks;
 };
 
-export const addItem = async (obj, collectionType) => {
+export const addItem = async (collectionType, obj) => {
   let isComplete = false;
 
   try {
     await addDoc(collection(db, collectionType), {
-      name: 'task',
-      description: 'description',
-      date: new Date(),
-      due_date: new Date(),
-      isChange: false,
+      ...obj,
       done: false,
+      isChange: {
+        bool: false,
+        date: null,
+      },
+      date: Timestamp.fromDate(new Date()),
     });
 
     isComplete = true;
@@ -51,11 +53,11 @@ export const deleteItem = async (id, collectionType) => {
   return isComplete;
 };
 
-export const updateItem = async (id, collectionType, obg) => {
+export const updateItem = async (id, collectionType, obj) => {
   let isComplete = false;
   try {
     const itemDoc = await doc(db, collectionType, id);
-    await updateDoc(itemDoc, odj);
+    await updateDoc(itemDoc, obj);
 
     isComplete = true;
   } catch (error) {
@@ -70,15 +72,13 @@ export const readItem = async (id, collectionType) => {
   let data = null;
 
   try {
-    const itemDoc = await doc(db, collectionType, id);
+    const itemDoc = doc(db, collectionType, id);
     const docSnap = await getDoc(itemDoc);
     data = docSnap.exists() ? docSnap.data() : null;
     isComplete = true;
   } catch (error) {
     console.log(error);
   }
-
-  if (data === null || data === undefined) return null;
 
   return { data, isComplete };
 };

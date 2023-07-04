@@ -9,6 +9,8 @@ import NoMatch from './pages/NoMatch';
 import { useEffect } from 'react';
 import Complited from './pages/Complited';
 import { useGetAll } from './hooks/useGetAll';
+import Loader from './UI/Loader';
+import Error from './UI/Error';
 
 function App() {
   useEffect(() => {
@@ -24,6 +26,9 @@ function App() {
 
   return (
     <Layout>
+      <Loader />
+      <Error />
+
       <Routes>
         <Route
           exact

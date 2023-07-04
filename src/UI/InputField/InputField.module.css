@@ -25,3 +25,7 @@
 .form-control:focus {
   border-color: var(--text);
 }
+
+.form-control__error {
+  border-color: var(--warning);
+}
